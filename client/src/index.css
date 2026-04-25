@@ -1,113 +1,204 @@
-:root {
-  --bg-dark: #05080f;
-  --bg-card: rgba(18, 24, 38, 0.4);
-  --bg-card-hover: rgba(25, 33, 50, 0.6);
-  --primary: #00e5ff;
-  --primary-glow: rgba(0, 229, 255, 0.4);
-  --primary-dim: rgba(0, 229, 255, 0.1);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --border-color: rgba(30, 41, 59, 0.7);
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+@import "tailwindcss";
+
+/* ── ArcMind AI Design Tokens (Tailwind v4 CSS Theme) ── */
+@theme {
+  --color-navy-950: #04091a;
+  --color-navy-900: #080f22;
+  --color-navy-800: #0b1530;
+  --color-navy-700: #0e1c3d;
+  --color-navy-600: #132348;
+
+  --color-cyan: #00cfff;
+  --color-cyan-dim: rgba(0, 207, 255, 0.10);
+  --color-purple: #c44dff;
+  --color-purple-mid: #7b6fff;
+  --color-purple-dim: rgba(196, 77, 255, 0.10);
+
+  --color-text-primary: #eaf4ff;
+  --color-text-secondary: #8aa8c8;
+  --color-text-muted: #3d5a7a;
+
+  --color-border-default: rgba(100, 180, 255, 0.12);
+  --color-border-hover: rgba(100, 180, 255, 0.28);
+  --color-border-glow: rgba(196, 77, 255, 0.20);
+
+  --font-family-mono: "Space Mono", monospace;
+  --font-family-sans: "DM Sans", sans-serif;
 }
 
-* {
+/* ── Global Reset ── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: var(--font-main);
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  line-height: 1.6;
+html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.04), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(0, 229, 255, 0.04), transparent 25%);
-  background-attachment: fixed;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  background: var(--color-navy-950);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: var(--font-main);
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-600);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-purple-mid);
 }
 
-.glow-text {
-  color: var(--text-primary);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  background: linear-gradient(to right, #fff, var(--primary));
+/* ── Gradient Utilities ── */
+.gradient-text {
+  background: linear-gradient(135deg, #00cfff 0%, #7b6fff 50%, #c44dff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  background-clip: text;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #00b4d8 100%);
-  color: #000;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 0.9rem;
+.gradient-bg {
+  background: linear-gradient(135deg, #00cfff 0%, #7b6fff 50%, #c44dff 100%);
 }
 
-.btn-primary:hover {
-  box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
-  transform: translateY(-2px);
-  filter: brightness(1.1);
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #00cfff 0%, #7b6fff 50%, #c44dff 100%);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-border:hover::before {
+  opacity: 1;
 }
 
-.btn-secondary {
-  background-color: rgba(255, 255, 255, 0.03);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+/* ── Dot Grid Background ── */
+.dot-grid {
+  background-image: radial-gradient(rgba(0, 207, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-.btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
+/* ── Glass Card ── */
 .glass-card {
-  background: rgba(18, 24, 38, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-border-default);
   border-radius: 12px;
-  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+.glass-card:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 30px rgba(123, 111, 255, 0.12);
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+/* ── Scan Log Terminal ── */
+.scan-terminal {
+  background: #020810;
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+}
+
+/* ── Pulsing Dot ── */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Gradient Border Pulse ── */
+@keyframes gradient-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+.gradient-pulse {
+  animation: gradient-pulse 2s ease-in-out infinite;
+}
+
+/* ── Cursor Blink ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ── React Flow Overrides ── */
+.react-flow__node {
+  background: var(--color-navy-800) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: 12px !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  font-family: var(--font-family-mono) !important;
+}
+
+.react-flow__edge-path {
+  stroke: url(#edge-gradient) !important;
+  stroke-width: 2 !important;
+}
+
+.react-flow__controls {
+  background: var(--color-navy-800) !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 8px !important;
+}
+
+.react-flow__controls button {
+  background: var(--color-navy-800) !important;
+  border-bottom: 1px solid var(--color-border-default) !important;
+  color: var(--color-text-primary) !important;
+  fill: var(--color-text-primary) !important;
+}
+
+.react-flow__minimap {
+  background: var(--color-navy-950) !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 8px !important;
+}
+
+.react-flow__background {
+  background: var(--color-navy-950) !important;
+}
+
+/* ── Mobile Bottom Nav ── */
+@media (max-width: 768px) {
+  .sidebar-desktop {
+    display: none !important;
   }
-  to {
-    transform: rotate(360deg);
+  .mobile-nav {
+    display: flex !important;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    padding-bottom: 80px !important;
   }
 }
-
-.animate-spin {
-  animation: spin 1s linear infinite;
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none !important;
+  }
 }
-

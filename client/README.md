@@ -1,22 +1,60 @@
-# React + Vite
+# ArcMind AI — Dashboard Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> AI-powered codebase memory engine. Scan, analyze, and understand any codebase with persistent AI memory.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+# Install dependencies
+npm install
 
-## React Compiler
+# Start development server
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The dashboard runs at **http://localhost:5173**
 
-## Expanding the ESLint configuration
+## Environment Variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a `.env` file in the client root:
 
+```env
+VITE_API_URL=http://127.0.0.1:8000
+```
 
-<!-- …or push an existing repository from the command line
-git remote add origin https://github.com/20pari57/ArcMInd.AI.git
-git branch -M main
-git push -u origin main -->
+## Tech Stack
+
+- **React 18** + Vite
+- **Tailwind CSS v4** (CSS-based theme config)
+- **Framer Motion** (animations)
+- **React Flow** (dependency graph)
+- **Recharts** (charts)
+- **Zustand** (global state)
+- **Axios** (API client)
+- **React Hot Toast** (notifications)
+- **Lucide React** (icons)
+
+## Pages
+
+| Route       | Page             | Description                                |
+|-------------|------------------|--------------------------------------------|
+| `/`         | Overview         | Stats, recent files, activity, graph mini  |
+| `/scan`     | Scan Project     | Path input, config, pipeline, terminal log |
+| `/memory`   | Memory Files     | View/download graphify_out files           |
+| `/graph`    | Dependency Graph | Interactive React Flow canvas              |
+| `/settings` | Settings         | API config, connection test, clear memory  |
+
+## Demo Mode
+
+If the FastAPI backend is unreachable, the dashboard automatically switches to **demo mode** with realistic placeholder data. A yellow "DEMO MODE" badge appears in the topbar.
+
+## Backend
+
+The FastAPI backend should run at `http://127.0.0.1:8000`. See the `backend/` directory for setup.
+
+## Brand Colors
+
+- Cyan: `#00cfff`
+- Purple/Magenta: `#c44dff`
+- Mid Gradient: `#7b6fff`
+- Deep Navy: `#04091a`
